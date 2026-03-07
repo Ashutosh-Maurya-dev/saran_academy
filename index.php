@@ -1,0 +1,116 @@
+<?php
+session_start();
+$success = isset($_GET['success']) ? trim($_GET['success']) : '';
+$error = isset($_GET['error']) ? trim($_GET['error']) : '';
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saran Academy | Koniya Ghat, Varanasi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="hero">
+        <nav>
+            <h1>Saran Academy</h1>
+            <a href="admin/login.php" class="admin-link">Admin Panel</a>
+        </nav>
+        <div class="hero-content">
+            <h2>Welcome to Saran Academy</h2>
+            <p>Address: Koniya Ghat, Varanasi</p>
+            <p>Classes: Nursery to Class 8</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="about" id="about">
+            <h3>About Our School</h3>
+            <p>
+                Saran Academy is a student-focused school where children from Nursery to Class 8
+                get quality education in a safe and supportive environment.
+            </p>
+            <div class="feature-grid">
+                <article>
+                    <h4>Computer Lab</h4>
+                    <p>Students learn basic and practical computer skills through our computer lab.</p>
+                </article>
+                <article>
+                    <h4>Yoga & Wellness</h4>
+                    <p>Regular yoga sessions help students stay active, disciplined, and healthy.</p>
+                </article>
+                <article>
+                    <h4>Dedicated Teachers</h4>
+                    <p>Experienced teachers guide each student with personal attention.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="query-section" id="admission-query">
+            <h3>Admission Query Form</h3>
+            <p>Fill this form and our school team will contact you soon.</p>
+
+            <?php if ($success !== ''): ?>
+                <div class="msg success"><?php echo htmlspecialchars($success); ?></div>
+            <?php endif; ?>
+            <?php if ($error !== ''): ?>
+                <div class="msg error"><?php echo htmlspecialchars($error); ?></div>
+            <?php endif; ?>
+
+            <form id="queryForm" action="submit_query.php" method="POST">
+                <div class="field">
+                    <label for="student_name">Student Name</label>
+                    <input type="text" id="student_name" name="student_name" required>
+                </div>
+
+                <div class="field">
+                    <label for="parent_name">Parent Name</label>
+                    <input type="text" id="parent_name" name="parent_name" required>
+                </div>
+
+                <div class="field">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" maxlength="10" required>
+                </div>
+
+                <div class="field">
+                    <label for="email">Email (optional)</label>
+                    <input type="email" id="email" name="email">
+                </div>
+
+                <div class="field">
+                    <label for="class_applied">Class Applied For</label>
+                    <select id="class_applied" name="class_applied" required>
+                        <option value="">Select Class</option>
+                        <option>Nursery</option>
+                        <option>LKG</option>
+                        <option>UKG</option>
+                        <option>Class 1</option>
+                        <option>Class 2</option>
+                        <option>Class 3</option>
+                        <option>Class 4</option>
+                        <option>Class 5</option>
+                        <option>Class 6</option>
+                        <option>Class 7</option>
+                        <option>Class 8</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Any specific question..."></textarea>
+                </div>
+
+                <button type="submit">Submit Admission Query</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <?php echo date('Y'); ?> Saran Academy, Koniya Ghat, Varanasi</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
