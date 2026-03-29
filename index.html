@@ -1,8 +1,4 @@
-<?php
-session_start();
-$success = isset($_GET['success']) ? trim($_GET['success']) : '';
-$error = isset($_GET['error']) ? trim($_GET['error']) : '';
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,13 +47,7 @@ $error = isset($_GET['error']) ? trim($_GET['error']) : '';
             <h3>Admission Query Form</h3>
             <p>Fill this form and our school team will contact you soon.</p>
 
-            <?php if ($success !== ''): ?>
-                <div class="msg success"><?php echo htmlspecialchars($success); ?></div>
-            <?php endif; ?>
-            <?php if ($error !== ''): ?>
-                <div class="msg error"><?php echo htmlspecialchars($error); ?></div>
-            <?php endif; ?>
-
+           
             <form id="queryForm" action="submit_query.php" method="POST">
                 <div class="field">
                     <label for="student_name">Student Name</label>
